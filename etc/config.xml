@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<!-- 数据库连接信息 -->
+	<db_conection>
+		<driver_class>
+			com.microsoft.sqlserver.jdbc.SQLServerDriver
+		</driver_class>
+		<url>
+			jdbc:sqlserver://localhost:1433;databaseName=excelTest
+		</url>
+		<user>sa</user>
+		<pass>123456</pass>
+	</db_conection>
+	<!--基础配置信息-->
+	<base_config>
+		<!--定义日志文件-->
+		<log_file>D:\excelImport.log</log_file>
+	</base_config>
+	<!-- 配置每个Excel文件的导入信息　-->
+	<Excel path="etc/test.xls">
+	<!--
+	className:动态创建的类名(默认为DynamicExcel) ,  
+	sheetName:Excel某一张sheet的名字 , 
+	table:数据库表名称 ,
+	index: 表明是第几张sheet
+	autoCommitRowIndex：默认读取多少条提交一次
+	 -->
+	<!--field：动态创建类的字段 ,  
+	database_column:数据库表列  ,  
+	file_column_index:对应sheet的列是第几列
+	-->
+		<sheet className="DynamicExcel" sheetName="sheet1" table="reachreach" index="2" autoCommitRowIndex="5">
+			<column field="orderDate" database_column="orderDate" file_column_index="1"/>
+			<column field="orderNum" database_column="orderNum" file_column_index="2" />
+			<!--<column field="model" database_column="model" file_column_index="3" />-->
+			<column field="quantity" database_column="quantity" file_column_index="4" />
+			<column field="remark" database_column="remark" file_column_index="5" />
+		</sheet>
+		 <sheet className="DynamicExcel2" sheetName="sheet2" table="bbb" index="1" autoCommitRowIndex="1000">
+			<column field="orderDate" database_column="orderDate" file_column_index="1"/>
+			<column field="orderNum" database_column="orderNum" file_column_index="2" />
+			<column field="model" database_column="model" file_column_index="3" />
+			<column field="quantity" database_column="quantity" file_column_index="4" />
+			<column field="remark" database_column="remark" file_column_index="5" />
+		</sheet>
+	</Excel>
+</root>
